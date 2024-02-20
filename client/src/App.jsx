@@ -1,9 +1,9 @@
-import { Login } from "./pages";
+import { Bidding, Layout, Login } from "./pages";
 
 function App() {
   return (
     <>
-      <Login />
+      <Bidding />
     </>
   );
 }
