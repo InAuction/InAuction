@@ -48,20 +48,6 @@ export default function Login() {
                 <h1 className="text-5xl font-bold">Please Sign-in to your account</h1>
               </div>
               
-              <div className="form-control">
-                
-                <input
-                  type="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
-                <label className="label">
-                  <a href="#" className="link-hover link label-text-alt">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
               {/* <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div> */}
