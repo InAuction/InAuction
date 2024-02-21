@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 
-export default function Avatar() {
+export default function Avatar({ currentUser }) {
   return (
     <>
       <div className="avatar fixed">
@@ -12,7 +12,7 @@ export default function Avatar() {
         </div>
       </div>
       <div className="fixed mt-64 flex justify-center">
-        <h1 className="text-3xl font-bold text-neutral">Garfield</h1>
+        <h1 className="text-3xl font-bold text-neutral">{currentUser.displayName}</h1>
       </div>
       <button
         onClick={() => signOut(auth)}

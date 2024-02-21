@@ -35,7 +35,7 @@ export default function Login() {
     <>
       <div className="flex h-screen flex-col lg:flex-row">
         {/* <!-- Left half: Image --> */}
-        <div className="flex bg-[url('https://images.pexels.com/photos/1585325/pexels-photo-1585325.jpeg')] bg-cover opacity-30 sm:flex-[.7] lg:flex-1"></div>
+        <div className="flex bg-[url('https://images.pexels.com/photos/1585325/pexels-photo-1585325.jpeg')] bg-cover opacity-40 sm:flex-[.7] lg:flex-1"></div>
 
         {/* <!-- Right half: Content --> */}
         <div className="flex items-center justify-center p-6 sm:flex-1 lg:flex-1">
@@ -75,8 +75,13 @@ export default function Login() {
                 <button className="btn btn-primary">Login</button>
               </div> */}
             </form>
-            <div>
-              <button onClick={logGoogleUser}>Sign In With Google</button>
+            <div className="flex justify-center">
+              <button
+                className="btn -mt-5 mb-5 bg-cyan-400 text-neutral"
+                onClick={logGoogleUser}
+              >
+                Login with Google
+              </button>
             </div>
           </div>
         </div>
