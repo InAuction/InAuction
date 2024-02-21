@@ -49,9 +49,7 @@ export default function Login() {
               </div>
               
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
+                
                 <input
                   type="password"
                   placeholder="password"
