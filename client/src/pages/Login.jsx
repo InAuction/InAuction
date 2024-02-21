@@ -45,7 +45,7 @@ export default function Login() {
                 <h1 className="text-5xl font-bold">Login</h1>
               </div>
               <div className="text-center">
-                <h1 className="text-5xl font-bold">Please Sign-in to your account</h1>
+                <h3 className="text-1xl font-bold">Please Sign-in to your account</h3>
               </div>
               
               {/* <div className="form-control mt-6">
