@@ -71,13 +71,10 @@ export default function Login() {
                   </a>
                 </label>
               </div>
-              {/* <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
-              </div> */}
             </form>
             <div className="flex justify-center">
               <button
-                className="btn -mt-5 mb-5 bg-cyan-400 text-neutral"
+                className="btn -mt-6 mb-5 bg-cyan-400 hover:bg-amber-200 text-neutral"
                 onClick={logGoogleUser}
               >
                 Login with Google

@@ -1,7 +1,4 @@
-import { signOut } from "firebase/auth";
 import React from "react";
-import { Link } from "react-router-dom";
-import { auth } from "../firebase";
 
 export default function Avatar({ currentUser }) {
   return (
@@ -12,14 +9,11 @@ export default function Avatar({ currentUser }) {
         </div>
       </div>
       <div className="fixed mt-64 flex justify-center">
-        <h1 className="text-3xl font-bold text-neutral">{currentUser.displayName}</h1>
+        <h1 className="text-3xl font-bold text-neutral">
+          {currentUser.displayName}
+        </h1>
       </div>
-      <button
-        onClick={() => signOut(auth)}
-        className="btn btn-primary mt-80 text-3xl font-bold text-neutral"
-      >
-        Logout
-      </button>
+     
     </>
   );
 }
