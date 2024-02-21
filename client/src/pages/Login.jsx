@@ -47,17 +47,7 @@ export default function Login() {
               <div className="text-center">
                 <h1 className="text-5xl font-bold">Please Sign-in to your account</h1>
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
+              
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
