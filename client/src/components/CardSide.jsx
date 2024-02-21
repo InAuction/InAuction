@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from "./Modal";
 
 export default function CardSide() {
   return (
@@ -19,10 +20,10 @@ export default function CardSide() {
             totam?
           </p>
           <div className="card-actions justify-around">
-            <button className="btn min-w-20 bg-orange-300 bg-opacity-90 text-neutral">
-              Detail
-            </button>
-            <button className="btn min-w-20 bg-orange-300 bg-opacity-90 text-neutral">
+            <button
+              className="btn min-w-20 bg-orange-300 bg-opacity-90 text-neutral"
+              onClick={() => document.getElementById("my_modal").showModal()}
+            >
               Bid
             </button>
             <button className="btn min-w-20 bg-orange-300 bg-opacity-90 text-neutral">

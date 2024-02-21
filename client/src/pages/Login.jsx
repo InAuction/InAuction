@@ -1,19 +1,49 @@
 import React from "react";
+// import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithGooglePopup } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const logGoogleUser = async () => {
+    try {
+      const response = await signInWithGooglePopup();
+      // console.log(response.user.displayName);
+      const { uid, displayName, email } = response.user;
+
+      const user = await setDoc(
+        doc(db, "users", uid),
+        {
+          uid,
+          displayName,
+          email,
+        },
+        { merge: true },
+      );
+
+      await setDoc(doc(db, "usersChats", uid), {}, { merge: true });
+
+      navigate("/bidding");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
-      <div class="flex h-screen flex-col lg:flex-row">
+      <div className="flex h-screen flex-col lg:flex-row">
         {/* <!-- Left half: Image --> */}
-        <div class="flex bg-[url('https://images.pexels.com/photos/1585325/pexels-photo-1585325.jpeg')] bg-cover opacity-30 sm:flex-[.7] lg:flex-1"></div>
+        <div className="flex bg-[url('https://images.pexels.com/photos/1585325/pexels-photo-1585325.jpeg')] bg-cover opacity-30 sm:flex-[.7] lg:flex-1"></div>
 
         {/* <!-- Right half: Content --> */}
-        <div class="flex items-center justify-center p-6 sm:flex-1 lg:flex-1">
+        <div className="flex items-center justify-center p-6 sm:flex-1 lg:flex-1">
           <div className="card w-full max-w-sm shrink-0 bg-cyan-200 bg-opacity-10 shadow-2xl">
             <form className="card-body">
-            <div className="text-center">
-              <h1 className="text-5xl font-bold">Login</h1>
-            </div>
+              <div className="text-center">
+                <h1 className="text-5xl font-bold">Login</h1>
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -41,10 +71,13 @@ export default function Login() {
                   </a>
                 </label>
               </div>
-              <div className="form-control mt-6">
+              {/* <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
-              </div>
+              </div> */}
             </form>
+            <div>
+              <button onClick={logGoogleUser}>Sign In With Google</button>
+            </div>
           </div>
         </div>
       </div>

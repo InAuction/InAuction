@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Avatar,
   CardSide,
   ChatBubbleStart,
   ChatBubbleEnd,
   TextInput,
+  Modal
 } from "../components";
 export default function Bidding() {
   const li = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  // useEffect(() => {
+  //   const unsub = onSnapshot(doc(db, "users", "SF"), (doc) => {
+  //     console.log("Current data: ", doc.data());
+  //   });
+  // }, []);
+
   return (
     <>
       <div className="flex flex-none">
@@ -21,9 +28,10 @@ export default function Bidding() {
             <TextInput />
           </div>
         </div>
+        <Modal />
         <div className="m-4 flex flex-wrap justify-evenly gap-4">
-          {li.map((l) => {
-            return <CardSide />;
+          {li.map((l, index) => {
+            return <CardSide key={index}/>;
           })}
         </div>
       </div>
