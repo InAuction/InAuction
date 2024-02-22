@@ -1,12 +1,19 @@
 import React from "react";
 
-export default function TextInput({ label }) {
+export default function TextInput({ label, name, onCF, value }) {
   return (
     <>
       {label && (
         <label className="input input-bordered flex w-96 items-center">
           {label}
-          <input type="text" className="grow ms-5" placeholder="Type here" />
+          <input
+            type="text"
+            className="ms-5 grow"
+            placeholder="Type here"
+            name={name}
+            value={value}
+            onChange={onCF}
+          />
         </label>
       )}
       {!label && (
