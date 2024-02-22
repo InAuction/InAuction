@@ -10,7 +10,6 @@ export default function Login() {
   const logGoogleUser = async () => {
     try {
       const response = await signInWithGooglePopup();
-      // console.log(response.user.displayName);
       const { uid, displayName, email } = response.user;
 
       const user = await setDoc(
@@ -27,7 +26,7 @@ export default function Login() {
 
       navigate("/bidding");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -38,43 +37,14 @@ export default function Login() {
         <div className="flex bg-[url('https://images.pexels.com/photos/1585325/pexels-photo-1585325.jpeg')] bg-cover opacity-40 sm:flex-[.7] lg:flex-1"></div>
 
         {/* <!-- Right half: Content --> */}
-        <div className="flex items-center justify-center p-6 sm:flex-1 lg:flex-1">
+        <div className="flex items-center justify-center sm:flex-1 lg:flex-1">
           <div className="card w-full max-w-sm shrink-0 bg-cyan-200 bg-opacity-10 shadow-2xl">
-            <form className="card-body">
-              <div className="text-center">
-                <h1 className="text-5xl font-bold">Login</h1>
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
-                <label className="label">
-                  <a href="#" className="link-hover link label-text-alt">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-            </form>
-            <div className="flex justify-center">
+            <div className="card-body flex justify-center">
+              <label htmlFor="" className="mb-5 text-center text-4xl font-bold">
+                Login
+              </label>
               <button
-                className="btn -mt-6 mb-5 bg-cyan-400 hover:bg-amber-200 text-neutral"
+                className="btn bg-cyan-400 text-neutral hover:bg-amber-200"
                 onClick={logGoogleUser}
               >
                 Login with Google

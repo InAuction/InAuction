@@ -1,55 +1,34 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
-  doc,
-  onSnapshot,
   collection,
   addDoc,
-  setDoc,
-  getDoc,
-  getDocs,
 } from "firebase/firestore";
-import { db, auth } from "../firebase";
+import { db } from "../firebase";
 import { TextInput } from "./index";
 import { AuthContext } from "../context/AuthContext";
-
 export default function AddItemModal() {
   const { currentUser } = useContext(AuthContext);
   const [item, setItem] = useState({
-    itemName: "",
+    name: "",
     startingPrice: 0,
     imageUrl: "",
+    bid: [],
+    owner: "",
+    currentPrice: 0,
+    status: true,
   });
 
-  // const unsub = onSnapshot(doc(db, "auctionItem", currentUser.uid), (doc) => {
-  //   console.log("Current data: ", doc.data());
-  // });
+  useEffect(() => {
+    setItem((prev) => ({
+      ...prev,
+      owner: "/users/" + currentUser.uid,
+    }));
+  }, [currentUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(currentUser.uid);
     try {
-      const res = await getDocs(db, "auctionItem", currentUser.uid);
-
-      if (!res.exists()) {
-        await setDoc(doc(db, "auctionItem", currentUser.uid), { items: [] });
-      }
-
-
-//       auctionItem: {
-//         auctioner:{
-//           itemList:{
-//             itemName,
-//             startingPrice,
-//             imageUrl,
-//             bid:[{
-// name,
-// bidPrice,
-// date,
-//             }]
-//           }
-//         }
-//       }
-      console.log(item);
+      await addDoc(collection(db, "auctionItem"), item);
     } catch (error) {
       console.error(error);
     }
@@ -79,15 +58,15 @@ export default function AddItemModal() {
           >
             <TextInput
               label={"Item Name"}
-              name={"itemName"}
+              name={"name"}
               onCF={handleInput}
-              value={item.itemName}
+              value={item.name}
             />
             <TextInput
               label={"Starting Price"}
-              name={"startingPrice"}
+              name={"currentPrice"}
               onCF={handleInput}
-              value={item.startingPrice}
+              value={item.currentPrice}
             />
             <TextInput
               label={"Image"}
