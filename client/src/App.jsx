@@ -4,27 +4,33 @@ import {
   createBrowserRouter,
   Navigate,
   RouterProvider,
+  Outlet
 } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 
-function App() {
+const ProtectedRoute = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
+  if (!currentUser) {
+    return <Navigate to="/login" />;
+  }
+  return <Outlet />
+};
 
-  const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
-      return <Navigate to="/login" />;
-    }
-    return children
-  };
-
+function App() {
   const router = createBrowserRouter([
     {
       path: "/login",
       element: <Login />,
     },
     {
-      path: "/bidding",
-      element: <ProtectedRoute children={<Bidding />} />,
+      path: "/",
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: "/bidding",
+          element: <Bidding />,
+        },
+      ]
     },
   ]);
 
